@@ -1,0 +1,35 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<main class="container py-5">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 mt-5">
+            <form method="POST" class="card card-body text-center shadow-lg">
+                <h1 class="mb-4">Crear usuario</h1>
+
+                {{ error }}
+                {% csrf_token %}
+
+                <div class="mb-3 text-start">
+                    <label for="username" class="form-label">Usuario:</label>
+                    <input type="text" name="username" id="username" class="form-control" 
+                        placeholder="Ingrese su usuario" autocomplete="username">
+                </div>
+
+                <div class="mb-3 text-start">
+                    <label for="password1" class="form-label">Contraseña:</label>
+                    <input type="password" name="password1" id="password1" class="form-control" 
+                        placeholder="Ingrese su contraseña" autocomplete="new-password">
+                </div>
+
+                <div class="mb-3 text-start">
+                    <label for="password2" class="form-label">Confirme contraseña:</label>
+                    <input type="password" name="password2" id="password2" class="form-control" 
+                        placeholder="Confirme su contraseña" autocomplete="new-password">
+                </div>
+
+                <button class="btn btn-primary w-100">Crear usuario</button>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}

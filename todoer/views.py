@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Task
-
+from .forms import CreateNewTask
 # Create your views here.
 def task_list(request):
     pending_tasks = Task.objects.filter(completed=False).order_by('-created_at')
@@ -8,4 +8,9 @@ def task_list(request):
     return render(request, 'todoer/task_list.html', {
         'pending_tasks': pending_tasks,
         'completed_tasks': completed_tasks
+    })
+
+def create_task(request):
+    return render(request,'create_task.html',{
+        'form': CreateNewTask
     })
