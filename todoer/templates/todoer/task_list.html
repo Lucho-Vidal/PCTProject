@@ -38,6 +38,10 @@
                                     class="btn btn-sm {% if task.completed %}btn-secondary{% else %}btn-success{% endif %}">
                                     {% if task.completed %}Reabrir{% else %}Completar{% endif %}
                                 </a>
+                                <a href="{% url 'todoer:delete_task' task.id %}" class="btn btn-danger"
+                                    onclick="return confirm('¿Seguro que deseas eliminar esta tarea?');">
+                                    Eliminar
+                                </a>
 
                             </li>
                             {% endif %}
@@ -59,6 +63,10 @@
                                 <a href="{% url 'todoer:toggle_task_completed' task.id %}"
                                     class="btn btn-sm {% if task.completed %}btn-secondary{% else %}btn-success{% endif %}">
                                     {% if task.completed %}Reabrir{% else %}Completar{% endif %}
+                                </a>
+                                <a href="{% url 'todoer:delete_task' task.id %}" class="btn btn-danger"
+                                    onclick="return confirm('¿Seguro que deseas eliminar esta tarea?');">
+                                    Eliminar
                                 </a>
 
                             </li>
@@ -97,6 +105,10 @@
                                     class="btn btn-sm {% if task.completed %}btn-secondary{% else %}btn-success{% endif %}">
                                     {% if task.completed %}Reabrir{% else %}Completar{% endif %}
                                 </a>
+                                <a href="{% url 'todoer:delete_task' task.id %}" class="btn btn-danger"
+                                    onclick="return confirm('¿Seguro que deseas eliminar esta tarea?');">
+                                    Eliminar
+                                </a>
 
                             </li>
                             {% endif %}
@@ -118,6 +130,10 @@
                                 <a href="{% url 'todoer:toggle_task_completed' task.id %}"
                                     class="btn btn-sm {% if task.completed %}btn-secondary{% else %}btn-success{% endif %}">
                                     {% if task.completed %}Reabrir{% else %}Completar{% endif %}
+                                </a>
+                                <a href="{% url 'todoer:delete_task' task.id %}" class="btn btn-danger"
+                                    onclick="return confirm('¿Seguro que deseas eliminar esta tarea?');">
+                                    Eliminar
                                 </a>
 
                             </li>
