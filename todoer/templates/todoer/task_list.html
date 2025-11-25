@@ -1,0 +1,136 @@
+{% extends 'todoer/layouts/base.html' %}
+{% block content %}
+<main class="container py-5">
+    <section class="card card-body bg-dark text-light">
+        <h1 class="display-4 text-center mb-4">Tasks</h1>
+
+        <!-- Botón para crear nueva tarea -->
+        <div class="text-center mb-4">
+            <a href="{% url 'todoer:create_task' %}" class="btn btn-outline-light">
+                + Crear nueva tarea
+            </a>
+        </div>
+
+        <!-- Accordion -->
+        <div class="accordion" id="accordionTasks">
+
+            <!-- Pendientes -->
+            <div class="accordion-item bg-dark text-light">
+                <h2 class="accordion-header" id="headingPending">
+                    <button class="accordion-button bg-secondary text-light" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsePending" aria-expanded="true" aria-controls="collapsePending">
+                        Tareas pendientes
+                    </button>
+                </h2>
+                <div id="collapsePending" class="accordion-collapse collapse show" aria-labelledby="headingPending"
+                    data-bs-parent="#accordionTasks">
+                    <div class="accordion-body">
+                        <!-- Privadas -->
+                        <h4 class="text-info">Privadas</h4>
+                        <ul>
+                            {% for task in pending_tasks %}
+                            {% if not task.group %}
+                            <li>
+                                <a href="{% url 'todoer:task_detail' task.id %}" class="text-light">
+                                    {{ task.title }}
+                                </a>
+                                <a href="{% url 'todoer:toggle_task_completed' task.id %}"
+                                    class="btn btn-sm {% if task.completed %}btn-secondary{% else %}btn-success{% endif %}">
+                                    {% if task.completed %}Reabrir{% else %}Completar{% endif %}
+                                </a>
+
+                            </li>
+                            {% endif %}
+                            {% empty %}
+                            <li>No hay tareas pendientes</li>
+                            {% endfor %}
+                        </ul>
+
+                        <!-- Por grupo -->
+                        {% for group in request.user.groups.all %}
+                        <h4 class="text-warning">{{ group.name }}</h4>
+                        <ul>
+                            {% for task in pending_tasks %}
+                            {% if task.group and task.group.name == group.name %}
+                            <li>
+                                <a href="{% url 'todoer:task_detail' task.id %}" class="text-light">
+                                    {{ task.title }}
+                                </a>
+                                <a href="{% url 'todoer:toggle_task_completed' task.id %}"
+                                    class="btn btn-sm {% if task.completed %}btn-secondary{% else %}btn-success{% endif %}">
+                                    {% if task.completed %}Reabrir{% else %}Completar{% endif %}
+                                </a>
+
+                            </li>
+                            {% endif %}
+                            {% empty %}
+                            <li>No hay tareas pendientes en {{ group.name }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Completadas -->
+            <div class="accordion-item bg-dark text-light">
+                <h2 class="accordion-header" id="headingCompleted">
+                    <button class="accordion-button collapsed bg-secondary text-light" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseCompleted" aria-expanded="false"
+                        aria-controls="collapseCompleted">
+                        Tareas completadas
+                    </button>
+                </h2>
+                <div id="collapseCompleted" class="accordion-collapse collapse" aria-labelledby="headingCompleted"
+                    data-bs-parent="#accordionTasks">
+                    <div class="accordion-body">
+                        <!-- Privadas -->
+                        <h4 class="text-info">Privadas</h4>
+                        <ul>
+                            {% for task in completed_tasks %}
+                            {% if not task.group %}
+                            <li>
+                                <a href="{% url 'todoer:task_detail' task.id %}" class="text-light">
+                                    {{ task.title }}
+                                </a>
+                                <a href="{% url 'todoer:toggle_task_completed' task.id %}"
+                                    class="btn btn-sm {% if task.completed %}btn-secondary{% else %}btn-success{% endif %}">
+                                    {% if task.completed %}Reabrir{% else %}Completar{% endif %}
+                                </a>
+
+                            </li>
+                            {% endif %}
+                            {% empty %}
+                            <li>No hay tareas completadas</li>
+                            {% endfor %}
+                        </ul>
+
+                        <!-- Por grupo -->
+                        {% for group in request.user.groups.all %}
+                        <h4 class="text-warning">{{ group.name }}</h4>
+                        <ul>
+                            {% for task in completed_tasks %}
+                            {% if task.group and task.group.name == group.name %}
+                            <li>
+                                <a href="{% url 'todoer:task_detail' task.id %}" class="text-light">
+                                    {{ task.title }}
+                                </a>
+                                <a href="{% url 'todoer:toggle_task_completed' task.id %}"
+                                    class="btn btn-sm {% if task.completed %}btn-secondary{% else %}btn-success{% endif %}">
+                                    {% if task.completed %}Reabrir{% else %}Completar{% endif %}
+                                </a>
+
+                            </li>
+                            {% endif %}
+                            {% empty %}
+                            <li>No hay tareas completadas en {{ group.name }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

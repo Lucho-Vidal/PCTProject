@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "widget_tweaks",# para personalizar formularios en templates
     'todoer',
     'loger'
 ]
@@ -122,6 +123,12 @@ STATIC_URL = 'static/'
 
 # Opcional si usas `collectstatic`
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# Control de sesión: cerrar sesión tras 60 minutos de inactividad
+SESSION_COOKIE_AGE = 3600  # 60 minutos
+
+# Cerrar sesión al cerrar el navegador
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 LOGIN_URL = '/signin'
 

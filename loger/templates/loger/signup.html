@@ -1,12 +1,13 @@
-{% extends 'layouts/base.html' %}
+{% extends 'loger/layouts/base.html' %}
 {% block content %}
+{% load widget_tweaks %}
 <main class="container py-5">
     <div class="row">
         <div class="col-md-4 offset-md-4 mt-5">
             <form method="POST" class="card card-body text-center shadow-lg">
                 <h1 class="mb-4">Crear usuario</h1>
 
-                {{ error }}
+                <!-- {{ error }} -->
                 {% csrf_token %}
 
                 <div class="mb-3 text-start">
@@ -15,7 +16,7 @@
                         placeholder="Ingrese su usuario" autocomplete="username">
                 </div>
 
-                <div class="mb-3 text-start">
+                <!-- <div class="mb-3 text-start">
                     <label for="password1" class="form-label">Contraseña:</label>
                     <input type="password" name="password1" id="password1" class="form-control" 
                         placeholder="Ingrese su contraseña" autocomplete="new-password">
@@ -25,6 +26,10 @@
                     <label for="password2" class="form-label">Confirme contraseña:</label>
                     <input type="password" name="password2" id="password2" class="form-control" 
                         placeholder="Confirme su contraseña" autocomplete="new-password">
+                </div> -->
+                <div class="mb-3">
+                    <label for="id_group" class="form-label">Grupo</label>
+                    {{ form.group|add_class:"form-select bg-secondary text-light border-0" }}
                 </div>
 
                 <button class="btn btn-primary w-100">Crear usuario</button>

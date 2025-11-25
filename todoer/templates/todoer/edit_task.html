@@ -1,0 +1,35 @@
+{% extends 'todoer/layouts/base.html' %}
+{% block content %}
+{% load widget_tweaks %}
+<main class="container py-5">
+    <section class="card card-body bg-dark text-light shadow">
+        <h2 class="mb-4 text-center">Editar tarea: {{ task.title }}</h2>
+        <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="id_title" class="form-label">Título</label>
+                {{ form.title|add_class:"form-control bg-secondary text-light border-0" }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_description" class="form-label">Descripción</label>
+                {{ form.description|add_class:"form-control bg-secondary text-light border-0" }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_group" class="form-label">Grupo</label>
+                {{ form.group|add_class:"form-select bg-secondary text-light border-0" }}
+            </div>
+            <div class="mb-3">
+                <label for="id_completed" class="form-label">¿Completada?</label>
+                {{ form.completed|add_class:"form-check-input" }}
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+                <button type="submit" class="btn btn-success">Guardar cambios</button>
+                <a href="{% url 'todoer:task_detail' task.id %}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </section>
+</main>
+{% endblock %}
