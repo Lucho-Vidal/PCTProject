@@ -3,7 +3,7 @@
 <main class="container py-5">
     <section class="card card-body">
         <h1 class="display-4 text-center">{{ titulo }}</h1>
-        <h3>{{ mensaje }}</h3>
+        <h4>{{ mensaje }}</h4>
         {% if roles %}
         <!-- <p>Tus roles: {{ roles|join:", " }}</p> -->
         {% endif %}
@@ -14,10 +14,10 @@
         <h1 class="display-6">Aplicaciones disponibles:</h1>
 
         <!-- Flex container -->
-        <div class="d-flex flex-wrap gap-3 mt-3">
+        <div class="d-flex justify-content-evenly m-3 gap-3 p-1">
 
             <!-- Card 1 -->
-            <a class="card text-decoration-none bg-dark text-light flex-fill" style="min-width: 200px;" href="{% url 'todoer:task_list' %}">
+            <a class="card text-decoration-none bg-dark text-light w-25"  href="{% url 'todoer:task_list' %}">
                 <div class="card-body text-center">
                     <h2 class="card-title">
                         Tareas
@@ -29,9 +29,14 @@
                     </h2>
                 </div>
             </a>
+            {% if "administrador" in user_groups %}
 
+            {% endif %}
+            <!-- "jefatura", "supervisor", "visor" -->
+
+            {% if "jefatura" in user_groups %}
             <!-- Card 2 -->
-            <a class="card text-decoration-none bg-dark text-light flex-fill" style="min-width: 200px;" href="/signup">
+            <a class="card text-decoration-none bg-dark text-light w-25"  href="/signup">
                 <div class="card-body text-center">
                     <h2 class="card-title">
                         Nuevo usuario
@@ -43,7 +48,7 @@
                     </h2>
                 </div>
             </a>
-
+            {% endif %}
         </div>
     </section>
     {% endif %}
