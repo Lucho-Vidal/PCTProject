@@ -63,7 +63,6 @@ card-importante{
     background-color: #1E1E1E; /* Fondo oscuro */
     border: 1px solid #292929;
     color: #B0B0B0;
-    padding: 16px;
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
