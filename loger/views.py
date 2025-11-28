@@ -62,6 +62,7 @@ def home(request):
     titulo = "Página de inicio"
     mensaje = "Bienvenido invitado"
     roles = []
+    user_groups = request.user.groups.values_list("name", flat=True)
 
     if request.user.is_authenticated:
         roles = list(request.user.groups.values_list("name", flat=True))
@@ -80,5 +81,5 @@ def home(request):
         else:
             titulo = "Bienvenido, tu usuario no tiene rol asignado"
             mensaje = "Por favor, contacta con el administrador."
-
-    return render(request, "loger/home.html", {"titulo":titulo,"mensaje": mensaje, "roles": roles})
+    print(user_groups)
+    return render(request, "loger/home.html", {"titulo":titulo,"mensaje": mensaje, "roles": roles,"user_groups": user_groups})
