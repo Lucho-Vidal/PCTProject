@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "widget_tweaks",# para personalizar formularios en templates
     'todoer',
-    'loger'
+    'loger',
+    'personal'
 ]
 
 MIDDLEWARE = [
