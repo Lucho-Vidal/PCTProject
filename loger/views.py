@@ -81,5 +81,4 @@ def home(request):
         else:
             titulo = "Bienvenido, tu usuario no tiene rol asignado"
             mensaje = "Por favor, contacta con el administrador."
-    print(user_groups)
     return render(request, "loger/home.html", {"titulo":titulo,"mensaje": mensaje, "roles": roles,"user_groups": user_groups})
